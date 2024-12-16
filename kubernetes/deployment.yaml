@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-rest-api
+  labels:
+    app: flask-rest-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-rest-api
+  template:
+    metadata:
+      labels:
+        app: flask-rest-api
+    spec:
+      containers:
+      - name: flask-rest-api
+        image: your-docker-image:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017/your-database"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+      imagePullPolicy: Always
