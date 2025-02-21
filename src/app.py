@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
-from src.routes import api_routes
+from routes import api_routes
 from urllib.parse import quote
 
-from src.services.stocks import fetch_and_store_mutual_fund_data
+from services.stocks import fetch_and_store_mutual_fund_data
 
 app = Flask(__name__)
 
@@ -17,8 +17,8 @@ def home():
 @app.route('/fetch-mutual-fund-data', methods=['GET'])
 def fetch_mutual_fund_data():
     try:
-        fetch_and_store_mutual_fund_data()
-        return jsonify({"message": "Data fetched and stored successfully"}), 200
+        data = fetch_and_store_mutual_fund_data()
+        return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     

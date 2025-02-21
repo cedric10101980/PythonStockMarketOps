@@ -1,4 +1,4 @@
-from src.services import fetch_all_data, modify_data
+from services import fetch_all_data, modify_data
 
 def get_items():
     return fetch_all_data()

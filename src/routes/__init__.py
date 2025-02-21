@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from src.controllers import get_items, update_item
+from controllers import get_items, update_item
 
 api_routes = Blueprint('api', __name__)
 
